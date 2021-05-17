@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Village Generator</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Create rural landscapes and see what happens when settlers occupy the lands and establish small villages.">
+  <meta name="keywords" content="Puzzle, Game">
+  <meta name="author" content="Magnus Engström">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property='og:image' content='https://village.magnusengstrom.com/static/img/share.png' />
+  <meta property='og:url' content='https://village.magnusengstrom.com/' />
+  <meta property="og:title" content="Village Generator" />
+  <meta property="og:description" content="Create rural landscapes and see what happens when settlers occupy the lands and establish small villages." />
+  <link rel="icon" type="image/png" href="static/img/favicon.png">
+  <link rel="stylesheet" href="static/css/styles.css?v=1.1">
+</head>
+<body>
+  <div id="container">
+      <canvas id="main" width="640" height="640"></canvas>
+  </div>
+  <div class="row">
+    <label class="btn" id="file"><input type="file" id="inp"/></label>
+    <div class="btn" id="random">2</div>
+    <div class="btn" id="download">3</div>
+  </div>
+  <div id="description">
+    <p>
+      Depending on how you look at it, this might be more of a mindfullness application rather than a game.
+    </p>
+    <hr />
+    <p>
+      When you create a new landscape, either by uploading an image or by a using random seed, the virtual settlers will try to establish a village. There isn't really any way to win or loose in this game, but you will however get a population count and a "score". The score is calculated from the size of the population and the diversity of the enviroment you helped create. Every time you generate a new world you are looking at something unique, never before seen. Have fun.
+    </p>
+    <hr />
+    <p>
+      Regarding privacy: Uploaded images used when generating a village are <i>not</i> stored in any way by the application. All image processing is done directly in the web browser and no image data is sent to the backend/server. Also, there are no cookies.
+    </p>
+    <div id="refs">
+      <a href="https://www.linkedin.com/in/magnus-engstr%C3%B6m-7558205b/"><img src="static/img/refs/linkedin.png" /><label>Profile on LinkedIn</label></a>
+      <a href="https://github.com/magnus-engstrom/village_generator"><img src="static/img/refs/github.png" /><label>Source on Github</label></a> 
+    </div>
+  </div>  
+  <script src="static/js/statistics.js"></script>
+  <script src="static/js/fileload.js"></script>
+  <script src="static/js/utils.js"></script>
+  <script src="static/js/world_object.js"></script>
+  <script src="static/js/noise_map.js"></script>
+  <script src="static/js/environment.js"></script>
+  <script src="static/js/pathfinding.js"></script>
+  <script src="static/js/render.js"></script>
+  <script src="static/js/app.js"></script>
+</body>
+</html>
