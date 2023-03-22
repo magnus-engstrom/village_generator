@@ -1,14 +1,6 @@
 from flask import Flask, current_app, request
-import psycopg2
-import urllib.parse as urlparse
+from stats import store
 import os
-
-url = urlparse.urlparse(os.environ['DATABASE_URL'])
-dbname = url.path[1:]
-user = url.username
-password = url.password
-host = url.hostname
-port = url.port
 
 app = Flask(__name__)
 
@@ -23,17 +15,7 @@ def stats():
         event = request.args.get('e')
         count = request.args.get('c')
         session_id = request.args.get('s')
-        con = psycopg2.connect(
-                dbname=dbname,
-                user=user,
-                password=password,
-                host=host,
-                port=port
-            )
-        cur = con.cursor()
-        cur.execute("INSERT INTO STATISTICS (AGENT,EVENT,SESSION_ID,COUNT,LEVEL_ID,APPLICATION) VALUES ('%s','%s', '%s', %i, %i, 'village')" % (agent, event, session_id, int(count), int(count)))
-        con.commit()
-        con.close()
+        store(cid=session_id, agent=agent, app='village', info=event, value=count)
     return ''
 
 @app.after_request
@@ -44,4 +26,4 @@ def after_request(response):
     return response
 
 if __name__ == '__main__':
-    app.run(threaded=True, host='0.0.0.0', port=5000)
+    app.run(threaded=True, host='0.0.0.0', port=4000)
